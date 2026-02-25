@@ -1,0 +1,98 @@
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Management Site</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Employee Management Site</h1>
+
+  <main id="formSection">
+    <input type="text" placeholder="Employee Name" class="textField" required/>
+    <input type="text" placeholder="Father's Name" class="textField" required/>
+    <input type="text" placeholder="Date of Birth" class="textField" required/>
+    <input type="text" placeholder="Highest Qualification" class="textField" required/>
+    <input type="text" placeholder="Hometown" class="textField" required/>
+    <input type="text" placeholder="Total Experience" class="textField" required/>
+    <input type="text" placeholder="Position" class="textField" required/>
+    <input type="text" placeholder="Currently Employeed" class="textField" required/>
+    <input type="text" placeholder="Employee Current Salary" class="textField" required/>
+    <input type="text" placeholder="Employee Expected Salary" class="textField" required/>
+    <input type="text" placeholder="Employee Email" class="textField" required/>
+    <input type="text" placeholder="Employee Mobile No." class="textField" required/>
+    <button id="submit">Submit</button>
+  </main>
+
+  <button id="employee_record">Show Employee Records</button>
+
+  <div id="recordSection" style="display:none;">
+    <h2>Employee Records</h2>
+    <div id="recordsList"></div>
+    <button id="backBtn">Back To Form</button>
+  </div>
+
+  <script>
+    const formSection = document.getElementById("formSection");
+    const recordSection = document.getElementById("recordSection");
+    const recordsList = document.getElementById("recordsList");
+
+    document.getElementById("submit").addEventListener("click", async () => {
+
+      const fields = document.querySelectorAll(".textField");
+
+      const employeeData = {
+        name: fields[0].value,
+        fname: fields[1].value,
+        dob: fields[2].value,
+        education: fields[3].value,
+        hometown: fields[4].value,
+        experience: fields[5].value,
+        position: fields[6].value,
+        employement: fields[7].value,
+        curr_salary: fields[8].value,
+        expt_salary: fields[9].value,
+        email: fields[10].value,
+        mobile: fields[11].value
+      };
+
+      const res = await fetch("http://127.0.0.1:80/", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(employeeData),
+      });
+
+      const data = await res.json();
+      alert(data.message);
+    });
+
+    document.getElementById("employee_record").addEventListener("click", async () => {
+
+      formSection.style.display = "none";
+      recordSection.style.display = "block";
+
+      const res = await fetch("http://127.0.0.1:80/employees");
+      const employees = await res.json();
+
+      recordsList.innerHTML = "";
+
+      employees.forEach(emp => {
+        recordsList.innerHTML += `
+          <div style="border:1px solid #ccc; padding:10px; margin:10px;">
+            <p><b>Name:</b> ${emp.name}</p>
+            <p><b>Position:</b> ${emp.position}</p>
+            <p><b>Email:</b> ${emp.email}</p>
+          </div>
+        `;
+      });
+    });
+
+    document.getElementById("backBtn").addEventListener("click", () => {
+      recordSection.style.display = "none";
+      formSection.style.display = "block";
+    });
+
+  </script>
+</body>
+</html>
+<!-- Hello -->

@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: #fafafa;
+}
+
+h1 {
+  text-align: center;
+  padding-top: 2rem;
+  margin-bottom: 2rem;
+}
+
+
+
+main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8em;
+  padding-bottom: 2rem;
+}
+
+.textField {
+  height: 2.8em;
+  width: 90%;
+  max-width: 320px;
+  padding: 0 10px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 0.9rem;
+}
+
+
+#submit,
+#employee_record,
+#backBtn {
+  background: #000;
+  color: white;
+  font-weight: 500;
+  height: 2.8em;
+  width: 90%;
+  max-width: 320px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#submit:hover,
+#employee_record:hover,
+#backBtn:hover {
+  background: #222121;
+}
+
+#employee_record {
+  display: block;
+  margin: 1rem auto;
+}
+
+#recordSection {
+  display: none;
+  width: 95%;
+  max-width: 800px;
+  margin: auto;
+  padding: 1rem;
+}
+
+#recordSection h2 {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.employee-card {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.employee-card p {
+  font-size: 0.9rem;
+  margin: 4px 0;
+}
+
+
+
+@media (max-width: 768px) {
+  main {
+    padding: 1rem;
+  }
+
+  #recordSection {
+    width: 95%;
+  }
+}
