@@ -56,7 +56,7 @@
         mobile: fields[11].value
       };
 
-      const res = await fetch("http://127.0.0.1:80/", {
+      const res = await fetch("https://employee-site-2.onrender.com/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(employeeData),
@@ -71,7 +71,7 @@
       formSection.style.display = "none";
       recordSection.style.display = "block";
 
-      const res = await fetch("http://127.0.0.1:80/employees");
+      const res = await fetch("https://employee-site-2.onrender.com/employees");
       const employees = await res.json();
 
       recordsList.innerHTML = "";
