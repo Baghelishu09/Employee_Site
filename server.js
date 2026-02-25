@@ -76,4 +76,6 @@ app.get("/employees", async (req, res) => {
     res.status(500).json({ message: "Server error" });
   }
 });
-module.exports = app;
+app.listen(port, () => {
+  console.log(`Running on ${port}`);
+})
